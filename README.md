@@ -223,6 +223,33 @@ You can:
 
 ---
 
+## 📁 Project Structure Details
+
+### `agent.py` - The Brain
+- Orchestrates conversation flow
+- Calls Gemini LLM with context
+- Coordinates API calls
+- Handles errors gracefully
+
+### `validators.py` - Business Rules
+- Field validation (campaign name, ad text, CTA)
+- **Music logic** (Traffic vs Conversions)
+- Pydantic models for type safety
+- Clear error messages
+
+### `tiktok_api.py` - API Mock
+- Realistic music validation
+- Error scenarios (copyright, geo-restriction, duration)
+- Campaign submission
+- 10% random failure rate (for testing)
+
+### `prompts.py` - Prompt Engineering
+- System prompt with clear rules
+- Context-aware user prompts
+- Specialized prompts (music validation, finalization, errors)
+- Structured JSON output schema
+
+---
 ## 🔐 OAuth & API Implementation Approach
 
 **Implementation Strategy: Realistic Simulation**
@@ -254,35 +281,6 @@ To convert to production:
 2. Update API endpoints in `tiktok_api.py` to real TikTok URLs
 3. Add actual HTTP request handling
 4. Implement token refresh logic
-
-
----
-
-## 📁 Project Structure Details
-
-### `agent.py` - The Brain
-- Orchestrates conversation flow
-- Calls Gemini LLM with context
-- Coordinates API calls
-- Handles errors gracefully
-
-### `validators.py` - Business Rules
-- Field validation (campaign name, ad text, CTA)
-- **Music logic** (Traffic vs Conversions)
-- Pydantic models for type safety
-- Clear error messages
-
-### `tiktok_api.py` - API Mock
-- Realistic music validation
-- Error scenarios (copyright, geo-restriction, duration)
-- Campaign submission
-- 10% random failure rate (for testing)
-
-### `prompts.py` - Prompt Engineering
-- System prompt with clear rules
-- Context-aware user prompts
-- Specialized prompts (music validation, finalization, errors)
-- Structured JSON output schema
 
 ---
 
@@ -319,7 +317,7 @@ To convert to production:
 
 ## 📸 Screenshots
 
-(Add screenshots from video demo showing:)
+Adding screenshots from video demo showing:
 1. OAuth flow
 2. Music validation success
 3. Music validation error + recovery
@@ -330,7 +328,7 @@ To convert to production:
 
 ## 🎥 Video Demo
 
-[Link to 5-minute video demo]
+Link to 5-minute video demo:
 
 **Demo covers:**
 1. Prompt structure and design decisions
@@ -372,8 +370,8 @@ To convert to production:
 **Syed Huzaifa**
 - B.Tech AI & Data Science, Final Year
 - Aditya College of Engineering, Madanapalle
-- GitHub: [YOUR_USERNAME]
-- Email: [YOUR_EMAIL]
+- GitHub: SyedHuzaifa12
+- Email: syedhuzaifa8855@gmail.com
 
 ---
 
