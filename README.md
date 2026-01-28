@@ -549,5 +549,12 @@ Agent: 🎉 **Campaign Created Successfully!**
   3. Review analytics after 24-48 hours
 
 Want to create another campaign? Just say "new campaign"!
+--
+
+---
+
+## 📝 Note on Contributors
+
+This repository shows multiple GitHub accounts in the contributor list due to Git configuration on my development machine. All code was written by me (Syed Huzaifa) for this assignment.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
