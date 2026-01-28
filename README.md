@@ -387,7 +387,6 @@ This project is created for educational purposes as part of the SoluLab AI Inter
 
 - **SoluLab** for the challenging and educational assignment
 - **Google Gemini** for the excellent LLM API
-- **Anthropic Claude** for architecture guidance
 ```
 
 ---
