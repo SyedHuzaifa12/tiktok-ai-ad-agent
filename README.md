@@ -248,7 +248,9 @@ You can:
 - Context-aware user prompts
 - Specialized prompts (music validation, finalization, errors)
 - Structured JSON output schema
-
+- 
+**Prompt Design Strategy:**
+The system prompt explicitly defines business rules, conversation style, and output format. Each user prompt includes conversation history and current state, enabling context-aware responses. The LLM is instructed to always return structured JSON, making the agent's reasoning transparent and debuggable.
 ---
 ## 🔐 OAuth & API Implementation Approach
 
