@@ -250,7 +250,7 @@ You can:
 - Structured JSON output schema
 - 
 ## Prompt Design Strategy:
-The system prompt explicitly defines business rules, conversation style, and output format. Each user prompt includes conversation history and current state, enabling context-aware responses. The LLM is instructed to always return structured JSON, making the agent's reasoning transparent and debuggable.
+-The system prompt explicitly defines business rules, conversation style, and output format. Each user prompt includes conversation history and current state, enabling context-aware responses. The LLM is instructed to always return structured JSON, making the agent's reasoning transparent and debuggable.
 ---
 ## 🔐 OAuth & API Implementation Approach
 
@@ -315,16 +315,6 @@ To convert to production:
    - Comprehensive logging
    - Monitoring/alerting
 
----
-
-## 📸 Screenshots
-
-Adding screenshots from video demo showing:
-1. OAuth flow
-2. Music validation success
-3. Music validation error + recovery
-4. Final campaign summary
-5. Submission success
 
 ---
 
