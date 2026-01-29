@@ -318,7 +318,7 @@ To convert to production:
 
 ## 🎥 Video Demo
 
-Link to 5-minute video demo:
+Link to 5-minute video demo: https://drive.google.com/file/d/1qgmw5fq6s8X53rkXm1xOWmSHYVDJKNjy/view?usp=drivesdk
 
 **Demo covers:**
 1. Prompt structure and design decisions
