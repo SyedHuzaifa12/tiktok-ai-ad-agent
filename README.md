@@ -223,6 +223,33 @@ You can:
 
 ---
 
+## 📁 Project Structure Details
+
+### `agent.py` - The Brain
+- Orchestrates conversation flow
+- Calls Gemini LLM with context
+- Coordinates API calls
+- Handles errors gracefully
+
+### `validators.py` - Business Rules
+- Field validation (campaign name, ad text, CTA)
+- **Music logic** (Traffic vs Conversions)
+- Pydantic models for type safety
+- Clear error messages
+
+### `tiktok_api.py` - API Mock
+- Realistic music validation
+- Error scenarios (copyright, geo-restriction, duration)
+- Campaign submission
+- 10% random failure rate (for testing)
+
+### `prompts.py` - Prompt Engineering
+- System prompt with clear rules
+- Context-aware user prompts
+- Specialized prompts (music validation, finalization, errors)
+   Structured JSON output schema
+
+---
 ## 🔐 OAuth & API Implementation Approach
 
 **Implementation Strategy: Realistic Simulation**
@@ -255,35 +282,6 @@ To convert to production:
 3. Add actual HTTP request handling
 4. Implement token refresh logic
 
-
----
-
-## 📁 Project Structure Details
-
-### `agent.py` - The Brain
-- Orchestrates conversation flow
-- Calls Gemini LLM with context
-- Coordinates API calls
-- Handles errors gracefully
-
-### `validators.py` - Business Rules
-- Field validation (campaign name, ad text, CTA)
-- **Music logic** (Traffic vs Conversions)
-- Pydantic models for type safety
-- Clear error messages
-
-### `tiktok_api.py` - API Mock
-- Realistic music validation
-- Error scenarios (copyright, geo-restriction, duration)
-- Campaign submission
-- 10% random failure rate (for testing)
-
-### `prompts.py` - Prompt Engineering
-- System prompt with clear rules
-- Context-aware user prompts
-- Specialized prompts (music validation, finalization, errors)
-- Structured JSON output schema
-
 ---
 
 ## 🎯 What I'd Improve With More Time
@@ -315,22 +313,12 @@ To convert to production:
    - Comprehensive logging
    - Monitoring/alerting
 
----
-
-## 📸 Screenshots
-
-(Add screenshots from video demo showing:)
-1. OAuth flow
-2. Music validation success
-3. Music validation error + recovery
-4. Final campaign summary
-5. Submission success
 
 ---
 
 ## 🎥 Video Demo
 
-[Link to 5-minute video demo]
+Link to 5-minute video demo: https://drive.google.com/file/d/1qgmw5fq6s8X53rkXm1xOWmSHYVDJKNjy/view?usp=drivesdk
 
 **Demo covers:**
 1. Prompt structure and design decisions
@@ -372,8 +360,8 @@ To convert to production:
 **Syed Huzaifa**
 - B.Tech AI & Data Science, Final Year
 - Aditya College of Engineering, Madanapalle
-- GitHub: [YOUR_USERNAME]
-- Email: [YOUR_EMAIL]
+- GitHub: SyedHuzaifa12
+- Email: syedhuzaifa8855@gmail.com
 
 ---
 
@@ -387,7 +375,6 @@ This project is created for educational purposes as part of the SoluLab AI Inter
 
 - **SoluLab** for the challenging and educational assignment
 - **Google Gemini** for the excellent LLM API
-- **Anthropic Claude** for architecture guidance
 ```
 
 ---
@@ -549,5 +536,12 @@ Agent: 🎉 **Campaign Created Successfully!**
   3. Review analytics after 24-48 hours
 
 Want to create another campaign? Just say "new campaign"!
+--
+
+---
+
+## 📝 Note on Contributors
+
+This repository shows multiple GitHub accounts in the contributor list due to Git configuration on my development machine. All code was written by me (Syed Huzaifa) for this assignment.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
