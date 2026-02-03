@@ -41,22 +41,46 @@ class TikTokAdAgent:
     """
     
     def __init__(self):
-        # Initialize Gemini client with new SDK
+        """Initialize agent with real or mock API based on configuration"""
+    
+        # Initialize Gemini
         self.client = genai.Client(api_key=settings.google_api_key)
         self.model_name = settings.gemini_model
-        
-        # Initialize state and services
-        self.state = AdCampaignState()
-        self.api = TikTokAPI(mock_mode=settings.tiktok_mock_mode)
-        self.oauth = TikTokOAuth()
-        
-        # Authenticate
-        self._initialize_oauth()
-        
-        print("\n✅ TikTok Ad Agent initialized successfully!")
-        print(f"   Using model: {self.model_name}")
-        print(f"   Mock mode: {settings.tiktok_mock_mode}\n")
     
+        # Initialize state
+        self.state = AdCampaignState()
+    
+        # Initialize TikTok API (real or mock)
+        if settings.tiktok_mock_mode:
+            print("⚠️  Running in MOCK mode (no real API credentials)")
+            from .tiktok_api import TikTokAPI
+            self.api = TikTokAPI(mock_mode=True)
+        else:
+            print("✅ Running in REAL API mode")
+            from .tiktok_real_api import TikTokRealAPI, TikTokConfig
+        
+            # Create config from settings
+            config = TikTokConfig(
+                app_id=settings.tiktok_app_id,
+                app_secret=settings.tiktok_app_secret,
+                access_token=settings.tiktok_access_token,
+                advertiser_id=settings.tiktok_advertiser_id
+            )
+        
+            # Initialize real API
+            self.api = TikTokRealAPI(config)
+        
+            # Test connection
+            success, message = self.api.test_connection()
+            print(f"   {message}")
+        
+            if not success:
+                print("   ⚠️  API connection failed - check credentials")
+                print("   💡 Verify TIKTOK_ACCESS_TOKEN and TIKTOK_ADVERTISER_ID in .env")
+    
+        print(f"\n✅ Agent initialized")
+        print(f"   Model: {self.model_name}")
+        print(f"   Mode: {'MOCK' if settings.tiktok_mock_mode else 'REAL API'}\n")
     def _initialize_oauth(self):
         """Initialize OAuth authentication"""
         try:
@@ -328,51 +352,83 @@ Reply with:
         except Exception as e:
             return f"❌ Validation error: {str(e)}"
         
-        # Submit to API
-        response = self.api.submit_campaign(payload)
+        # Submit to API (different handling for real vs mock)
+        if settings.tiktok_mock_mode:
+        # Mock API
+            response = self.api.submit_campaign(payload)
+    
+            if response.success:
+                campaign_data = response.data
+                self.state.stage = ConversationStage.COMPLETE
         
-        if response.success:
-            campaign_data = response.data
-            self.state.stage = ConversationStage.COMPLETE
-            
-            return f"""
-🎉 **Campaign Created Successfully!**
+                return f"""
+        🎉 **Campaign Created! (Mock Mode)**
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**Campaign ID:** {campaign_data['campaign_id']}
-**Name:** {campaign_data['campaign_name']}
-**Status:** {campaign_data['status']}
+        **Campaign ID:** {campaign_data['campaign_id']}
+        **Name:** {campaign_data['campaign_name']}
+        **Status:** {campaign_data['status']}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✅ {campaign_data['message']}
+        📊 Dashboard: {campaign_data['dashboard_url']}
 
-📊 Dashboard URL: {campaign_data['dashboard_url']}
-   (Mocked for demonstration - in production this would open your TikTok Ads dashboard)
+        ⚠️ **Note:** This is simulated. To create real campaigns:
+            1. Add TikTok credentials to .env
+            2. Set TIKTOK_MOCK_MODE=false
+            3. Restart the agent
 
-**Next Steps:**
-  1. Monitor your campaign performance in the TikTok Ads dashboard
-  2. Adjust your budget and targeting as needed
-  3. Review analytics after 24-48 hours
-
-Want to create another campaign? Just say "new campaign"!
-"""
+        Create another? Type "new campaign"!
+        """
         else:
-            error_explanation = interpret_api_error(response)
-            
-            return f"""
-❌ **Campaign Submission Failed**
+            # Real TikTok API
+            success, result = self.api.create_campaign(payload)
+    
+            if success:
+                self.state.stage = ConversationStage.COMPLETE
+        
+                return f"""
+        🎉 **REAL Campaign Created on TikTok!**
 
-{error_explanation}
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**What you can do:**
-  1. Review your campaign details
-  2. Make necessary corrections
-  3. Try submitting again
+        **Campaign ID:** {result['campaign_id']}
+        **Name:** {result['campaign_name']}
+        **Status:** {result['status']}
 
-Type "review" to see your current campaign details.
-"""
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        ✅ {result['message']}
+
+        📊 TikTok Ads Manager: {result['dashboard_url']}
+
+        🎯 This is a REAL campaign on TikTok!
+
+        **Next Steps:**
+        1. Visit TikTok Ads Manager
+        2. Complete ad group and creative setup
+        3. Set budget and schedule
+        4. Launch campaign!
+
+        Create another? Type "new campaign"!
+    """
+            else:
+                return f"""
+        ❌ **Campaign Creation Failed**
+
+        {result.get('message', 'Unknown error')}
+
+        **Suggestion:** {result.get('suggestion', 'Check logs for details')}
+
+        **What to check:**
+        1. Access token is valid
+        2. Advertiser ID is correct
+        3. API permissions granted
+        4. Network connection stable
+
+        Type "retry" to try again.
+        """
     
     def get_greeting(self) -> str:
         """Returns initial greeting message"""

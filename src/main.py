@@ -41,7 +41,7 @@ def main():
         with console.status("[yellow]Initializing AI agent...", spinner="dots"):
             agent = TikTokAdAgent()
         
-        # Print greeting
+        # Print greeting iouoi
         greeting = agent.get_greeting()
         console.print(Panel(greeting, title="[bold green]Agent[/bold green]", border_style="green"))
         
