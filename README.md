@@ -9,7 +9,8 @@ An AI-powered conversational agent for creating TikTok advertising campaigns thr
 
 ## 🎥 Video Demonstration
 
-**📹 Watch Complete Walkthrough:** [VIEW DEMO VIDEO](https://drive.google.com/file/d/1qgmw5fq6s8X53rkXm1xOWmSHYVDJKNjy/view?usp=drivesdk)
+**📹 Watch Complete Walkthrough - Old Video:** [VIEW OLD DEMO VIDEO](https://drive.google.com/file/d/1qgmw5fq6s8X53rkXm1xOWmSHYVDJKNjy/view?usp=drivesdk)
+**📹 Watch Complete Walkthrough- New Videp:** [VIEW NEW DEMO VIDEO](https://drive.google.com/file/d/1qgmw5fq6s8X53rkXm1xOWmSHYVDJKNjy/view?usp=drivesdk)
 
 **Video demonstrates:**
 - Real TikTok API integration architecture
