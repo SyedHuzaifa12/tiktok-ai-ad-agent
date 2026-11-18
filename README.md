@@ -32,7 +32,7 @@ This project showcases advanced AI engineering practices:
 ### ✅ **Core Capabilities**
 - **Intelligent Prompt Design**: Structured LLM outputs with Gemini
 - **Business Logic Enforcement**: Complex music validation rules
-- **Dual-Mode Architecture**: Seamless switching between mock and real APIs
+- **Dual-Mode Architecture**: Seamless switching between mock and real APIs 
 - **Production Error Handling**: Comprehensive error interpretation and user guidance
 - **OAuth 2.0 Implementation**: Complete authentication flow ready for real credentials
 - **Type-Safe Configuration**: Pydantic-based validation throughout
